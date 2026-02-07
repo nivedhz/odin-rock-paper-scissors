@@ -41,7 +41,7 @@ function mainGame(){
         let roundResult = playRound(userChoice, computerChoice);
         noOfRounds++;
         // Displays the round no and the no of rounds left
-        console.log(`\nRound No: ${noOfRounds}     Rounds Left: ${Math.abs(noOfRounds - MAX_ROUNDS)}`)
+        console.log(`\nRound No: ${noOfRounds}     Rounds Left: ${Math.abs(noOfRounds - MAX_ROUNDS)}`);
         // Displays user's choice and computer's choice
         console.log(`\nYou Chose: ${userChoice.toUpperCase()}`);
         console.log(`Computer Chose: ${computerChoice.toUpperCase()}`);
@@ -61,10 +61,10 @@ function mainGame(){
             userScore++;
             console.log("\nSo You win 🧑‍🦰");
         }
-        console.log(`\nYour Points: ${userScore}  Computer Points: ${computerScore}`)
+        console.log(`\nYour Points: ${userScore}  Computer Points: ${computerScore}`);
     }
     // Calls the evaluation function that logs the result.
-    overallResult(userScore, computerScore)
+    overallResult(userScore, computerScore);
 }
 // Evaluates the performance of user and computer in the whole game and gives an output respectively.
 function overallResult(userScores, computerScores){
