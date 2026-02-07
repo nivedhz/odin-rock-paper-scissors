@@ -69,8 +69,8 @@ function game(){
 }
 // Evaluates the performance of user and computer in the whole game and gives an output respectively.
 function evalGame(userScores, computerScores){
-    if (userScores>computerScores) console.log("\nYou Won 🎊");
-    else if (userScores<computerScores) console.log("\nComputer Won 🤖");
-    else console.log("\nIt's a Draw");
+    if (userScores>computerScores) console.log("\nYou Won Overall🎊");
+    else if (userScores<computerScores) console.log("\nComputer Won Overall🤖");
+    else console.log("\nIt's a Draw Overall");
 }
 game();
