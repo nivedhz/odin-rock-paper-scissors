@@ -10,19 +10,21 @@ function computerChoice(){
     return computerChoice;
 }
 function round(){
-    computer = computerChoice();
     user = userChoice();
+    computer = computerChoice();
+    console.log(`You Chose: ${user.toUpperCase()}`)
+    console.log(`Computer Chose: ${computer.toUpperCase()}`)
     if (user == computer){
-        return `You choosed ${user} and Computer choosed ${computer}, So it's a draw`;
+        return `So it's a draw 🤖🧑‍🦰`;
     }
     else if((user == "rock" && computer == "paper")||(user == "paper" && computer == "scissors")||(user == "scissors" && computer == "rock")){
-        return `You choosed ${user} and Computer choosed ${computer}, So Computer Wins`;
+        return `So Computer Wins 🤖`;
     }
     else if((user == "rock" && computer == "scissors") || (user == "paper" && computer == "rock") || (user == "scissors" && computer == "paper")){
-        return `You choosed ${user} and Computer choosed ${computer}, So You Win`
+        return `So You Win 🧑‍🦰`
     }
     else{
-        return "Please enter a valid input"
+        return "Please enter a valid input 👽"
     }
 }
 console.log(round())
