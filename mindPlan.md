@@ -32,9 +32,6 @@ Play 5 rounds hence completing one game.
 
 TODO: 
 
---Track the points of computer and user and display it
 
---Display the no of rounds played and no of rounds left
 
---Display an overall win message if user's score is greater than computer's and vice versa and also display a draw message.
 
