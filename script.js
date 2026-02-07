@@ -2,7 +2,6 @@ const gameOptions = ["rock", "paper", "scissors"];
 
 function userChoice(){
     let userChoice = prompt("Rock, Paper or Scissors: ").toLowerCase().trim();
-    console.log(`function userChoice: ${userChoice}`);
     return userChoice;
 }
 function computerChoice(){
@@ -13,8 +12,6 @@ function computerChoice(){
 function round(){
     computer = computerChoice();
     user = userChoice();
-    console.log(`round computerChoice : ${computer}`)
-    console.log(`round userChoice: ${user}`)
     if (user == computer){
         return `You choosed ${user} and Computer choosed ${computer}, So it's a draw`;
     }
