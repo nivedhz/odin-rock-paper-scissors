@@ -31,7 +31,3 @@ Take the return value from the compared value and give an appropriate console.lo
 Play 5 rounds hence completing one game.
 
 TODO: 
-
-
-
-
