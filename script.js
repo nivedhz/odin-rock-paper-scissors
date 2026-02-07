@@ -9,7 +9,7 @@ const computerBeats = {
 // Gets the User's choice from a prompt window
 function getUserChoice(){
     let userChoice = prompt("Rock, Paper or Scissors: ");
-    if (!userChoice) return null;
+    if (!userChoice) return "invalid";
     return userChoice.toLowerCase().trim();
 }
 
@@ -39,29 +39,37 @@ function game(){
         let user = getUserChoice();
         let computer = getComputerChoice();
         let results = playRound(user, computer);
-        console.log(`You Chose: ${user.toUpperCase()}`);
+        noOfRounds++;
+        // Displays the round no and the no of rounds left
+        console.log(`\nRound No: ${noOfRounds}     Rounds Left: ${Math.abs(noOfRounds - 5)}`)
+        // Displays user's choice and computer's choice
+        console.log(`\nYou Chose: ${user.toUpperCase()}`);
         console.log(`Computer Chose: ${computer.toUpperCase()}`);
         if (results === "invalid"){
-            noOfRounds++;
-            console.log("Please enter a valid input 👽");
+            console.log("\nPlease enter a valid input 👽");
         }    
         else if (results === "draw"){
-            noOfRounds++;
             userScore+= 0.5;
             computerScore+= 0.5;
-            console.log("So it's a Draw 🧑‍🦰🤖");
+            console.log("\nSo it's a Draw 🧑‍🦰🤖");
         }
         else if(results === "lose"){
-            noOfRounds++;
             computerScore++;
-            console.log("So Computer Wins 🤖");
+            console.log("\nSo Computer Wins 🤖");
         }
         else if(results === "win") {
-            noOfRounds++;
             userScore++;
-            console.log("So You win 🧑‍🦰");
+            console.log("\nSo You win 🧑‍🦰");
         }
+        console.log(`\nYour Points: ${userScore}  Computer Points: ${computerScore}`)
     }
+    // Calls the evaluation function that logs the result.
+    evalGame(userScore, computerScore)
 }
-
+// Evaluates the performance of user and computer in the whole game and gives an output respectively.
+function evalGame(userScores, computerScores){
+    if (userScores>computerScores) console.log("\nYou Won 🎊");
+    else if (userScores<computerScores) console.log("\nComputer Won 🤖");
+    else console.log("\nIt's a Draw");
+}
 game();
