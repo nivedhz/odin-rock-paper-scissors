@@ -31,7 +31,6 @@ function playRound(user, computer){
 // Simulates a round which calls the getUserChoice and getComputerChoice function
 // Logs the choice of user and computer into the console
 // Results the representative output according to the output of the playRound() 
-// TODO : Tried to implement the 5 rounds thing but failed miserably, WHY IS THE WHILE LOOP NOT WORKING????.
 function game(){
     let noOfRounds = 0;
     let userScore = 0;
@@ -65,5 +64,4 @@ function game(){
     }
 }
 
-// TODO: Temporary log which prints the return value of the round function,
 game();
