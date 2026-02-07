@@ -35,13 +35,14 @@ function game(){
     let noOfRounds = 0;
     let userScore = 0;
     let computerScore = 0;
-    while (noOfRounds < 5){
+    const MAX_ROUNDS = 5;
+    while (noOfRounds < MAX_ROUNDS){
         let user = getUserChoice();
         let computer = getComputerChoice();
         let results = playRound(user, computer);
         noOfRounds++;
         // Displays the round no and the no of rounds left
-        console.log(`\nRound No: ${noOfRounds}     Rounds Left: ${Math.abs(noOfRounds - 5)}`)
+        console.log(`\nRound No: ${noOfRounds}     Rounds Left: ${Math.abs(noOfRounds - MAX_ROUNDS)}`)
         // Displays user's choice and computer's choice
         console.log(`\nYou Chose: ${user.toUpperCase()}`);
         console.log(`Computer Chose: ${computer.toUpperCase()}`);
