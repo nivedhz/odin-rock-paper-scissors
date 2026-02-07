@@ -27,14 +27,8 @@ function playRound(user, computer){
     else if (computerBeats[user] === computer) return "lose";
 }
 
-// Simulates a round which calls the getUserChoice and getComputerChoice function
-// Logs the choice of user and computer into the console
-// Results the representative output according to the output of the playRound() 
-function mainGame(){
-    let noOfRounds = 0;
-    let userScore = 0;
-    let computerScore = 0;
-    const MAX_ROUNDS = 5;
+//Runs the main game and loops until 5 rounds are finished.
+function runGame(noOfRounds, userScore, computerScore, MAX_ROUNDS){
     while (noOfRounds < MAX_ROUNDS){
         let userChoice = getUserChoice();
         let computerChoice = getComputerChoice();
@@ -66,10 +60,20 @@ function mainGame(){
     // Calls the evaluation function that logs the result.
     overallResult(userScore, computerScore);
 }
+
+function mainGame(){
+    let noOfRounds = 0;
+    let userScore = 0;
+    let computerScore = 0;
+    const MAX_ROUNDS = 5;
+    runGame(noOfRounds, userScore, computerScore, MAX_ROUNDS)
+
+}
 // Evaluates the performance of user and computer in the whole game and gives an output respectively.
-function overallResult(userScores, computerScores){
-    if (userScores>computerScores) console.log("\nYou Won Overall🎊");
-    else if (userScores<computerScores) console.log("\nComputer Won Overall🤖");
+function overallResult(userScore, computerScore){
+    if (userScore>computerScore) console.log("\nYou Won Overall🎊");
+    else if (userScore<computerScore) console.log("\nComputer Won Overall🤖");
     else console.log("\nIt's a Draw Overall");
 }
+
 mainGame();
