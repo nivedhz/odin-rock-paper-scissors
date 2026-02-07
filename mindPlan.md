@@ -1,11 +1,8 @@
 Rock Paper Scissors
 
 
-
-Get an input from user
-
-Check if the input is rock paper or scissors
-
+Declare a gameOptions Variable with a list of "rock", "paper" and "scissors"
+Get an input from user and lowercase that input
 Generate a random rock paper scissor for the computer
 
 Compare the two values from user and computer
