@@ -25,7 +25,6 @@ function playRound(user, computer){
     if (!gameOptions.includes(user)) return "invalid";
     else if (user === computer) return "draw";
     else if (computerBeats[user] === computer) return "lose";
-    else return "win";
 }
 
 // Simulates a round which calls the getUserChoice and getComputerChoice function
@@ -58,7 +57,7 @@ function game(){
             computerScore++;
             console.log("\nSo Computer Wins 🤖");
         }
-        else if(results === "win") {
+        else {
             userScore++;
             console.log("\nSo You win 🧑‍🦰");
         }

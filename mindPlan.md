@@ -30,4 +30,6 @@ Take the return value from the compared value and give an appropriate console.lo
 
 Play 5 rounds hence completing one game.
 
+--If the end result is a draw then display an overall draw message and do the same thing for compter's win, else display user's win message.
+
 TODO: 
