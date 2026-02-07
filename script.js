@@ -30,30 +30,30 @@ function playRound(user, computer){
 // Simulates a round which calls the getUserChoice and getComputerChoice function
 // Logs the choice of user and computer into the console
 // Results the representative output according to the output of the playRound() 
-function game(){
+function mainGame(){
     let noOfRounds = 0;
     let userScore = 0;
     let computerScore = 0;
     const MAX_ROUNDS = 5;
     while (noOfRounds < MAX_ROUNDS){
-        let user = getUserChoice();
-        let computer = getComputerChoice();
-        let results = playRound(user, computer);
+        let userChoice = getUserChoice();
+        let computerChoice = getComputerChoice();
+        let roundResult = playRound(userChoice, computerChoice);
         noOfRounds++;
         // Displays the round no and the no of rounds left
         console.log(`\nRound No: ${noOfRounds}     Rounds Left: ${Math.abs(noOfRounds - MAX_ROUNDS)}`)
         // Displays user's choice and computer's choice
-        console.log(`\nYou Chose: ${user.toUpperCase()}`);
-        console.log(`Computer Chose: ${computer.toUpperCase()}`);
-        if (results === "invalid"){
+        console.log(`\nYou Chose: ${userChoice.toUpperCase()}`);
+        console.log(`Computer Chose: ${computerChoice.toUpperCase()}`);
+        if (roundResult === "invalid"){
             console.log("\nPlease enter a valid input 👽");
         }    
-        else if (results === "draw"){
+        else if (roundResult === "draw"){
             userScore+= 0.5;
             computerScore+= 0.5;
             console.log("\nSo it's a Draw 🧑‍🦰🤖");
         }
-        else if(results === "lose"){
+        else if(roundResult === "lose"){
             computerScore++;
             console.log("\nSo Computer Wins 🤖");
         }
@@ -64,12 +64,12 @@ function game(){
         console.log(`\nYour Points: ${userScore}  Computer Points: ${computerScore}`)
     }
     // Calls the evaluation function that logs the result.
-    evalGame(userScore, computerScore)
+    overallResult(userScore, computerScore)
 }
 // Evaluates the performance of user and computer in the whole game and gives an output respectively.
-function evalGame(userScores, computerScores){
+function overallResult(userScores, computerScores){
     if (userScores>computerScores) console.log("\nYou Won Overall🎊");
     else if (userScores<computerScores) console.log("\nComputer Won Overall🤖");
     else console.log("\nIt's a Draw Overall");
 }
-game();
+mainGame();
