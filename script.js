@@ -6,12 +6,12 @@ function userChoice(){
 }
 function computerChoice(){
     let randomChoice = Math.floor(Math.random()*gameOptions.length);
-    computerChoice = gameOptions[randomChoice];
+    let computerChoice = gameOptions[randomChoice];
     return computerChoice;
 }
 function round(){
-    user = userChoice();
-    computer = computerChoice();
+    let user = userChoice();
+    let computer = computerChoice();
     console.log(`You Chose: ${user.toUpperCase()}`)
     console.log(`Computer Chose: ${computer.toUpperCase()}`)
     if (user == computer){
