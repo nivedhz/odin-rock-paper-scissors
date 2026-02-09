@@ -76,4 +76,4 @@ function overallResult(userScore, computerScore){
     else console.log("\nIt's a Draw Overall");
 }
 
-mainGame();
+// mainGame();
