@@ -13,32 +13,32 @@
           <div class="screenTop">
             <h3 class="rpsScreenMain">Rock, Paper & Scissors
             </h3>
-            <p class="roundScore"><span>0</span>:<span>0</span></p>
+            <p class="roundScore"><span id="computer-score">0</span>:<span id="user-score">0</span></p>
           </div>
           <div class="screenBottom">
             <div class="chatScreen">
               <div class="computer"><p>Computer</p>
-                <img src="images/scissors.png" alt="">
+                <img src="images/scissors.png" alt="" id="computer-selection">
               </div>
               <div class="user"><p>User</p>
-                <img src="images/rock.png" alt="">
+                <img src="images/rock.png" alt="" id="user-selction">
               </div>
             </div>
             <hr style="border: 1px solid black ; margin-bottom: 4px;">
             <div class="choices">
-              <img src="images/paper.png" alt="Paper">
-              <img src="images/rock.png" alt="Rock">
-              <img src="images/scissors.png" alt="Scissors">
+              <img src="images/paper.png" alt="Paper" id="paper-option">
+              <img src="images/rock.png" alt="Rock" id="rock-option">
+              <img src="images/scissors.png" alt="Scissors" id="scissors-option">
             </div>
           </div>
         </div>
       </div>
       <div class="lowerItems border">
         <div class="dpad">
-          <button class="dpad-btn up btn-properties "></button>
-          <button class="dpad-btn down btn-properties "></button>
-          <button class="dpad-btn left btn-properties "></button>
-          <button class="dpad-btn right btn-properties "></button>
+          <button class="dpad-btn up btn-properties"></button>
+          <button class="dpad-btn down btn-properties"></button>
+          <button class="dpad-btn left btn-properties" id="left-btn"></button>
+          <button class="dpad-btn right btn-properties" id="right-btn"></button>
           <div class="dpad-center"></div>
         </div>
         <div class="function-btn">
@@ -47,6 +47,7 @@
         </div>
       </div>
     </div>
-    <script src="script.js"></script>
+    <!-- <script src="script.js"></script> -->
+     <script src="test.js"></script>
   </body>
 </html>
