@@ -3,6 +3,7 @@
     padding: 0;
     box-sizing: border-box;
     outline: 1px solid red;
+    outline-offset: -1px;
 }
 body{
     display: flex;
@@ -68,7 +69,7 @@ body{
     border: none;
     box-shadow: 3px 0 0 0;
     transition: box-shadow 0.1s ease-in;
-    transition: backgroung-color 0.1s ease-in;
+    transition: background-color 0.1s ease-in;
     cursor: pointer;
 }
 .up{
@@ -98,7 +99,7 @@ body{
 }
 .dpad-center{
     position: absolute;
-    z-index: 1px;
+    z-index: 1;
     width: 20%;
     height: 20%;
     border-radius: 10px;
