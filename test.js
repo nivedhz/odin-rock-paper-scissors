@@ -14,8 +14,10 @@ const gameOptions = [paperOption, rockOption, scissorsOption]
 let currentIndex = 1;
 gameOptions[currentIndex].classList.add("selection");
 const menuSwitchingAuido = new Audio("audio/click-menu-button-mouth-sound-clop-ui-birdofthenorth.mp3");
+menuSwitchingAuido.preload = 'auto';
 menuSwitchingAuido.volume = 0.3;
 let rightBtnClick = rightBtn.addEventListener("click", function(){
+    menuSwitchingAuido.currentTime = 0;
     menuSwitchingAuido.play();
     currentIndex++
     if (currentIndex > (gameOptions.length-1)){
@@ -28,6 +30,7 @@ let rightBtnClick = rightBtn.addEventListener("click", function(){
 })
 
 let leftBtnClick = leftBtn.addEventListener("click", function(){
+    menuSwitchingAuido.currentTime = 0;
     menuSwitchingAuido.play();
     currentIndex--;
     if (currentIndex < 0){
