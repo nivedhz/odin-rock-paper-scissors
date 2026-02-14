@@ -33,4 +33,4 @@
 
 * If the end result is a draw then display an overall draw message and do the same thing for compter's win, else display user's win message.
 
-TODO: 
+## TODO:
