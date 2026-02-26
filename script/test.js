@@ -11,7 +11,6 @@ const selectionBtn = document.getElementById("selection-btn");
 const menuBtn = document.getElementById("menu-btn");
 const innerScreen = document.getElementById("innerScreen");
 const innerScreenElemets = [...innerScreen.children];
-const delay = 500;
 
 //Default Game Options
 const gameOptions = [paperOption, rockOption, scissorsOption]
