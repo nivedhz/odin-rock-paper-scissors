@@ -8,10 +8,18 @@ const scissorsOption = document.getElementById("scissors-option");
 const rightBtn = document.getElementById("right-btn");
 const leftBtn = document.getElementById("left-btn");
 const selectionBtn = document.getElementById("selection-btn");
-const menuBtn = document.getElementById("menu-btn")
+const menuBtn = document.getElementById("menu-btn");
+const innerScreen = document.getElementById("innerScreen");
+const innerScreenElemets = [...innerScreen.children];
+const delay = 500;
 
 //Default Game Options
 const gameOptions = [paperOption, rockOption, scissorsOption]
+const computerBeats = {
+    rockOption : paperOption,
+    paperOption : scissorsOption,
+    scissorsOption : rockOption
+}
 
 // Selecting the 2nd element
 let currentIndex = 1;
@@ -29,12 +37,15 @@ const menuSelectionAudio = new Audio("audio/menu-selection.mp3");
 menuSelectionAudio.preload = "auto";
 menuSelectionAudio.volume = 0.3;
 
+// Add selection styles to the current selected element and remnove the selection style from the previous selection.
 function addSelectionStyle(){
     gameOptions.forEach(gameOption => {
         gameOption.classList.remove("selection");
     })
     gameOptions[currentIndex].classList.add("selection");
 }
+
+// Plays selection and switching audios.
 function playSwitchingAudio(){
     menuSwitchingAudio.currentTime = 0;
     menuSwitchingAudio.play();
@@ -66,10 +77,52 @@ let leftBtnClick = leftBtn.addEventListener("click", function(){
 let selectionBtnClick = selectionBtn.addEventListener("click", function(){
     playSelectionAudio();
     let computerChoiceRandom = Math.floor(Math.random()*gameOptions.length);
-    computerSelection.src = gameOptions[computerChoiceRandom].getAttribute("src")
+    computerSelection.src = gameOptions[computerChoiceRandom].getAttribute("src");
     userSelection.src = gameOptions[currentIndex].getAttribute("src");
-    
+    if (computerSelection.src === userSelection.src){
+        innerScreen.replaceChildren();
+        const drawMessage = document.createElement('div');
+        drawMessage.textContent = "It's a Draw!";
+        Object.assign(drawMessage.style, {
+            color: "inherit",
+            fontSize: "32px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "centrer",
+            textAlign: "center"
+          });
+        innerScreen.appendChild(drawMessage);
+        setTimeout(() => {
+            innerScreen.replaceChildren(...innerScreenElemets);
+        }
+        , 1000);
+    }
+    else {
+        innerScreen.replaceChildren();
+        const notDrawMessage = document.createElement('div');
+        notDrawMessage.textContent = "It's NOT a Draw!";
+        Object.assign(notDrawMessage.style, {
+            color: "inherit",
+            fontSize: "32px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "centrer",
+            textAlign: "center"
+          });
+        innerScreen.appendChild(notDrawMessage);
+        setTimeout(() => {
+            innerScreen.replaceChildren(...innerScreenElemets);
+        }
+        , 1000);
+    }
 })
 let menuBtnClick = menuBtn.addEventListener("click", function(){
     playSelectionAudio();
 })
+
+// Round results
+/*
+Determine result.
+Display the result in the entire inner screen element.
+Update the score on the top according to the result.
+*/
