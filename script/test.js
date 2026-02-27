@@ -1,7 +1,7 @@
 let computerScore = document.getElementById("computer-score");
 let userScore = document.getElementById("user-score");
 let computerSelection = document.getElementById("computer-selection");
-let userSelection = document.getElementById("user-selction");
+let userSelection = document.getElementById("user-selection");
 const paperOption = document.getElementById("paper-option");
 const rockOption = document.getElementById("rock-option");
 const scissorsOption = document.getElementById("scissors-option");
@@ -84,11 +84,12 @@ let selectionBtnClick = selectionBtn.addEventListener("click", function(){
         drawMessage.textContent = "It's a Draw!";
         Object.assign(drawMessage.style, {
             color: "inherit",
-            fontSize: "32px",
+            fontSize: "24px",
             display: "flex",
             justifyContent: "center",
-            alignItems: "centrer",
-            textAlign: "center"
+            textAlign: "center",
+            margin: "25%",
+            fontWeight: "800"
           });
         innerScreen.appendChild(drawMessage);
         setTimeout(() => {
@@ -96,25 +97,28 @@ let selectionBtnClick = selectionBtn.addEventListener("click", function(){
         }
         , 1000);
     }
-    else {
+
+    else if (computerBeats[userSelection.src] === computerSelection.src){
         innerScreen.replaceChildren();
-        const notDrawMessage = document.createElement('div');
-        notDrawMessage.textContent = "It's NOT a Draw!";
-        Object.assign(notDrawMessage.style, {
+        const computerWonMessage = document.createElement('div');
+        computerWonMessage = "You Lost!";
+        Object.assign(computerWonMessage.style, {
             color: "inherit",
-            fontSize: "32px",
+            fontSize: "24px",
             display: "flex",
             justifyContent: "center",
-            alignItems: "centrer",
-            textAlign: "center"
+            textAlign: "center",
+            margin: "25%",
+            fontWeight: "800"
           });
-        innerScreen.appendChild(notDrawMessage);
+        innerScreen.appendChild(computerWonMessage);
         setTimeout(() => {
             innerScreen.replaceChildren(...innerScreenElemets);
         }
         , 1000);
     }
 })
+
 let menuBtnClick = menuBtn.addEventListener("click", function(){
     playSelectionAudio();
 })
