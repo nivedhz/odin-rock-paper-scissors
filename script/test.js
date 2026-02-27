@@ -78,54 +78,27 @@ let selectionBtnClick = selectionBtn.addEventListener("click", function(){
     let computerChoiceRandom = Math.floor(Math.random()*gameOptions.length);
     computerSelection.src = gameOptions[computerChoiceRandom].getAttribute("src");
     userSelection.src = gameOptions[currentIndex].getAttribute("src");
-    if (computerSelection.src === userSelection.src){
-        innerScreen.replaceChildren();
-        const drawMessage = document.createElement('div');
-        drawMessage.textContent = "It's a Draw!";
-        Object.assign(drawMessage.style, {
-            color: "inherit",
-            fontSize: "24px",
-            display: "flex",
-            justifyContent: "center",
-            textAlign: "center",
-            margin: "25%",
-            fontWeight: "800"
-          });
-        innerScreen.appendChild(drawMessage);
-        setTimeout(() => {
-            innerScreen.replaceChildren(...innerScreenElemets);
-        }
-        , 1000);
+    let computerSelectionChecker = gameOptions[computerChoiceRandom];
+    let userSelectionChecker = gameOptions[currentIndex];
+    let currentUserScore = Number(userScore.textContent);
+    let currentComputerScore = Number(computerScore.textContent);
+    if (userSelectionChecker === computerSelectionChecker){
+        currentUserScore+= 0.5;
+        currentComputerScore+= 0.5;
     }
-
-    else if (computerBeats[userSelection.src] === computerSelection.src){
-        innerScreen.replaceChildren();
-        const computerWonMessage = document.createElement('div');
-        computerWonMessage = "You Lost!";
-        Object.assign(computerWonMessage.style, {
-            color: "inherit",
-            fontSize: "24px",
-            display: "flex",
-            justifyContent: "center",
-            textAlign: "center",
-            margin: "25%",
-            fontWeight: "800"
-          });
-        innerScreen.appendChild(computerWonMessage);
-        setTimeout(() => {
-            innerScreen.replaceChildren(...innerScreenElemets);
-        }
-        , 1000);
+    else if(computerBeats[userSelectionChecker] === computerSelectionChecker){
+        currentComputerScore+= 1;
     }
-})
+    else{
+        console.log(computerBeats[userSelectionChecker]);
+        console.log(userSelectionChecker);
+        console.log(computerSelectionChecker);
+        currentUserScore+= 1;
+    }
+    userScore.textContent = currentUserScore;
+    computerScore.textContent = currentComputerScore;
+    })
 
 let menuBtnClick = menuBtn.addEventListener("click", function(){
     playSelectionAudio();
 })
-
-// Round results
-/*
-Determine result.
-Display the result in the entire inner screen element.
-Update the score on the top according to the result.
-*/
