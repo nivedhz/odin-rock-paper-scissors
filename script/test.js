@@ -15,9 +15,9 @@ const innerScreenElemets = [...innerScreen.children];
 //Default Game Options
 const gameOptions = [paperOption, rockOption, scissorsOption]
 const computerBeats = {
-    rockOption : paperOption,
-    paperOption : scissorsOption,
-    scissorsOption : rockOption
+    "rock-option" : "paper-option",
+    "paper-option" : "scissors-option",
+    "scissors-option" : "rock-option"
 }
 
 // Selecting the 2nd element
@@ -86,13 +86,10 @@ let selectionBtnClick = selectionBtn.addEventListener("click", function(){
         currentUserScore+= 0.5;
         currentComputerScore+= 0.5;
     }
-    else if(computerBeats[userSelectionChecker] === computerSelectionChecker){
+    else if(computerBeats[userSelectionChecker.id] === computerSelectionChecker.id){
         currentComputerScore+= 1;
     }
     else{
-        console.log(computerBeats[userSelectionChecker]);
-        console.log(userSelectionChecker);
-        console.log(computerSelectionChecker);
         currentUserScore+= 1;
     }
     userScore.textContent = currentUserScore;
