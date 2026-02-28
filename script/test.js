@@ -10,7 +10,7 @@ const leftBtn = document.getElementById("left-btn");
 const selectionBtn = document.getElementById("selection-btn");
 const menuBtn = document.getElementById("menu-btn");
 const innerScreen = document.getElementById("innerScreen");
-const innerScreenElemets = [...innerScreen.children];
+const innerScreenElemets = innerScreen.innerHTML;
 
 //Default Game Options
 const gameOptions = [paperOption, rockOption, scissorsOption]
@@ -19,6 +19,7 @@ const computerBeats = {
     "paper-option" : "scissors-option",
     "scissors-option" : "rock-option"
 }
+let rounds = 0;
 
 // Selecting the 2nd element
 let currentIndex = 1;
@@ -82,20 +83,41 @@ let selectionBtnClick = selectionBtn.addEventListener("click", function(){
     let userSelectionChecker = gameOptions[currentIndex];
     let currentUserScore = Number(userScore.textContent);
     let currentComputerScore = Number(computerScore.textContent);
-    if (userSelectionChecker === computerSelectionChecker){
-        currentUserScore+= 0.5;
-        currentComputerScore+= 0.5;
-    }
-    else if(computerBeats[userSelectionChecker.id] === computerSelectionChecker.id){
-        currentComputerScore+= 1;
+    if (rounds<5){
+        if (userSelectionChecker === computerSelectionChecker){
+            currentUserScore+= 0.5;
+            currentComputerScore+= 0.5;
+        }
+        else if(computerBeats[userSelectionChecker.id] === computerSelectionChecker.id){
+            currentComputerScore+= 1;
+        }
+        else{
+            currentUserScore+= 1;
+        }
+        rounds++
+        userScore.textContent = currentUserScore;
+        computerScore.textContent = currentComputerScore;
     }
     else{
-        currentUserScore+= 1;
+        innerScreen.replaceChildren();
+        let message = document.createElement('div');
+        if(currentUserScore === currentComputerScore){
+            message.textContent = "It's a Draw!";
+        }
+        else if(currentUserScore < currentComputerScore){
+            message.textContent = "Computer Wins!"
+        }
+        else{
+            message.textContent = "You Win!";
+        }
+        message.classList.add("message");
+        innerScreen.appendChild(message); 
+        rounds = 0;
     }
-    userScore.textContent = currentUserScore;
-    computerScore.textContent = currentComputerScore;
     })
 
 let menuBtnClick = menuBtn.addEventListener("click", function(){
     playSelectionAudio();
+    innerScreen.replaceChildren();
+    window.location.reload()
 })

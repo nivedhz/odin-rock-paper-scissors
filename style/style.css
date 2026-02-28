@@ -203,3 +203,11 @@ body{
     background-color: #999999;
     outline: 3px solid #eee0e0;
 }
+.message{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: 800;
+    color: inherit;
+}
