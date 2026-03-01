@@ -10,14 +10,14 @@ const leftBtn = document.getElementById("left-btn");
 const selectionBtn = document.getElementById("selection-btn");
 const menuBtn = document.getElementById("menu-btn");
 const innerScreen = document.getElementById("innerScreen");
-const innerScreenElemets = innerScreen.innerHTML;
+const innerScreenNodes = [...innerScreen.childNodes];
 
 //Default Game Options
-const gameOptions = [paperOption, rockOption, scissorsOption]
+const gameOptions = {"paper": paperOption, "rock": rockOption, "scissors": scissorsOption}
 const computerBeats = {
-    "rock-option" : "paper-option",
-    "paper-option" : "scissors-option",
-    "scissors-option" : "rock-option"
+    rock: "paper",
+    paper: "scissors",
+    scissors: "rock"
 }
 let rounds = 0;
 
@@ -25,7 +25,7 @@ let rounds = 0;
 let currentIndex = 1;
 
 // Add the selection css class to the defaultly selected center item.
-gameOptions[currentIndex].classList.add("selection");
+Object.values(gameOptions)[currentIndex].classList.add("selection");
 
 // Menu Switching Audio
 const menuSwitchingAudio = new Audio("audio/menu-switching.mp3");
@@ -39,43 +39,41 @@ menuSelectionAudio.volume = 0.3;
 
 // Add selection styles to the current selected element and remnove the selection style from the previous selection.
 function addSelectionStyle(){
-    gameOptions.forEach(gameOption => {
+    Object.values(gameOptions).forEach(gameOption => {
         gameOption.classList.remove("selection");
     })
-    gameOptions[currentIndex].classList.add("selection");
+    Object.values(gameOptions)[currentIndex].classList.add("selection");
 }
 
-// Plays selection and switching audios.
-function playSwitchingAudio(){
-    menuSwitchingAudio.currentTime = 0;
-    menuSwitchingAudio.play();
+function playAudio(audio){
+    audio.play();
+    audio.currentTime = 0;
 }
-function playSelectionAudio(){
-    menuSelectionAudio.currentTime = 0;
-    menuSelectionAudio.play();
-}
+
 // D-pad Button Functions.
-let rightBtnClick = rightBtn.addEventListener("click", function(){
-    playSwitchingAudio();
+rightBtn.addEventListener("click", function(){
+    playAudio(menuSwitchingAudio);
     currentIndex++
-    if (currentIndex > (gameOptions.length-1)){
+    if (currentIndex > (Object.keys(gameOptions).length-1)){
         currentIndex = 0;
     }    
     addSelectionStyle();
 })
 
-let leftBtnClick = leftBtn.addEventListener("click", function(){
-    playSwitchingAudio();
+leftBtn.addEventListener("click", function(){
+    playAudio(menuSwitchingAudio);
     currentIndex--;
     if (currentIndex < 0){
-        currentIndex = (gameOptions.length -1);
+        currentIndex = (Object.keys(gameOptions).length-1);
     }
     addSelectionStyle();
 })
 
 // A-B Selection button function.
-let selectionBtnClick = selectionBtn.addEventListener("click", function(){
-    playSelectionAudio();
+selectionBtn.addEventListener("click", function(){
+    playAudio(menuSelectionAudio);
+    // Very Big
+    // TODO
     let computerChoiceRandom = Math.floor(Math.random()*gameOptions.length);
     computerSelection.src = gameOptions[computerChoiceRandom].getAttribute("src");
     userSelection.src = gameOptions[currentIndex].getAttribute("src");
@@ -116,8 +114,10 @@ let selectionBtnClick = selectionBtn.addEventListener("click", function(){
     }
     })
 
-let menuBtnClick = menuBtn.addEventListener("click", function(){
-    playSelectionAudio();
-    innerScreen.replaceChildren();
-    window.location.reload()
+menuBtn.addEventListener("click", function(){
+    playAudio(menuSelectionAudio);
+    innerScreen.replaceChildren(...innerScreenNodes);
+    userScore.textContent = computerScore.textContent = rounds = 0;
+    currentIndex = 1;
+    addSelectionStyle();
 })
