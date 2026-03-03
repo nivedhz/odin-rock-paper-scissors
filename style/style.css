@@ -41,6 +41,8 @@ body{
     box-shadow:inset 3px 0 1px 0;
 }
 .innerScreen{
+    display: flex;
+    flex-direction: column;
     margin-top: 10px;
     min-height: 80%;
     max-width: 64%;
@@ -207,7 +209,8 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 24px;
+    flex-grow: 1;
+    font-size: 32px;
     font-weight: 800;
     color: inherit;
 }
