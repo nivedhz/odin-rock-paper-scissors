@@ -20,7 +20,7 @@ const computerBeats = {
     scissors: "rock"
 }
 const MAX_ROUNDS = 5;
-let rounds = 1;
+let rounds = 0;
 let currentUserScore = 0;
 let currentComputerScore = 0;
 
@@ -91,6 +91,7 @@ function aBtnFunction(){
     let computerSelectionKey = Object.keys(gameOptions)[computerChoiceRandom];
     computerSelection.src = gameOptions[computerSelectionKey].getAttribute("src");
     userSelection.src = gameOptions[userSelectionKey].getAttribute("src");
+    rounds++;
     if (rounds>MAX_ROUNDS){
         innerScreen.replaceChildren();
         let message = document.createElement('div');
@@ -121,7 +122,6 @@ function aBtnFunction(){
         else{
             currentUserScore+= 1;
         }
-        rounds++;
         userScore.textContent = currentUserScore;
         computerScore.textContent = currentComputerScore;
     }
