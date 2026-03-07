@@ -67,6 +67,41 @@ function playAudio(audio){
     audio.currentTime = 0;
 }
 
+function endMessage(){
+    innerScreen.replaceChildren();
+    let message = document.createElement('div');
+    if(currentUserScore === currentComputerScore){
+        playAudio(drawAudio);
+        message.textContent = "It's a Draw!";
+    }
+    else if(currentUserScore < currentComputerScore){
+        playAudio(loseAudio);
+        message.textContent = "Computer Wins!";
+    }
+    else{
+        playAudio(winAudio);
+        message.textContent = "You Win!";
+    }
+    message.classList.add("message");
+    innerScreen.appendChild(message);
+    rounds = currentUserScore = currentComputerScore = 0;
+}
+
+function playRound(userSelectionKey, computerSelectionKey){
+    if (userSelectionKey === computerSelectionKey){
+        currentUserScore+= 0.5;
+        currentComputerScore+= 0.5;
+    }
+    else if(computerBeats[userSelectionKey] === computerSelectionKey){
+        currentComputerScore+= 1;
+    }
+    else{
+        currentUserScore+= 1;
+    }
+    userScore.textContent = currentUserScore;
+    computerScore.textContent = currentComputerScore;
+}
+
 function rightBtnFunction(){
     playAudio(menuSwitchingAudio);
     currentIndex++
@@ -94,37 +129,10 @@ function aBtnFunction(){
     userSelection.src = gameOptions[userSelectionKey].getAttribute("src");
     rounds++;
     if (rounds>MAX_ROUNDS){
-        innerScreen.replaceChildren();
-        let message = document.createElement('div');
-        if(currentUserScore === currentComputerScore){
-            playAudio(drawAudio);
-            message.textContent = "It's a Draw!";
-        }
-        else if(currentUserScore < currentComputerScore){
-            playAudio(loseAudio);
-            message.textContent = "Computer Wins!";
-        }
-        else{
-            playAudio(winAudio);
-            message.textContent = "You Win!";
-        }
-        message.classList.add("message");
-        innerScreen.appendChild(message);
-        rounds = currentUserScore = currentComputerScore = 0;
+        endMessage();
     }
     else {
-        if (userSelectionKey === computerSelectionKey){
-            currentUserScore+= 0.5;
-            currentComputerScore+= 0.5;
-        }
-        else if(computerBeats[userSelectionKey] === computerSelectionKey){
-            currentComputerScore+= 1;
-        }
-        else{
-            currentUserScore+= 1;
-        }
-        userScore.textContent = currentUserScore;
-        computerScore.textContent = currentComputerScore;
+        playRound(userSelectionKey, computerSelectionKey)
     }
 };
 
@@ -142,19 +150,15 @@ rightBtn.addEventListener("click", rightBtnFunction);
 leftBtn.addEventListener("click", leftBtnFunction);
 
 // Key Press Functions
+const keyPressFunctions = {
+    "ArrowRight": rightBtnFunction,
+    "ArrowLeft": leftBtnFunction,
+    "Enter": aBtnFunction,
+    "r": bBtnFunction,
+    "R": bBtnFunction                
+}
 document.addEventListener("keydown", function(event) {
-    if (event.key === "ArrowRight"){
-        rightBtnFunction();
-    }
-    else if(event.key === "ArrowLeft"){
-        leftBtnFunction();
-    }
-    else if(event.key === "Enter"){
-        aBtnFunction();
-    }
-    else if(event.key === "r" || event.key === "R"){
-        bBtnFunction();
-    }
+    keyPressFunctions[event.key]();
 });
 
 
