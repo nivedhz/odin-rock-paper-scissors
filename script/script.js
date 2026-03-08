@@ -67,6 +67,10 @@ function playAudio(audio){
     audio.currentTime = 0;
 }
 
+function addDefaultImage(){
+    computerSelection.src = userSelection.src = DEFAULT_SELCTION_IMAGE;
+}
+
 function endMessage(){
     innerScreen.replaceChildren();
     let message = document.createElement('div');
@@ -139,11 +143,14 @@ function aBtnFunction(){
 function bBtnFunction(){
     playAudio(menuSelectionAudio);
     innerScreen.replaceChildren(...innerScreenElements);
-    computerSelection.src = userSelection.src = DEFAULT_SELCTION_IMAGE;
     rounds = currentUserScore = currentComputerScore = userScore.textContent = computerScore.textContent = 0;
     currentIndex = 1;
+    addDefaultImage();
     addSelectionStyle();
 };
+
+// Default Functions
+addDefaultImage();
 
 // D-pad Button Functions.
 rightBtn.addEventListener("click", rightBtnFunction);
