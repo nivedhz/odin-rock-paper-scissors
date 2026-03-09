@@ -20,6 +20,16 @@ const computerBeats = {
     scissors: "rock"
 }
 const MAX_ROUNDS = 5;
+
+
+// Defualt Technical Options
+const keyPressFunctions = {
+    "ArrowRight": rightBtnFunction,
+    "ArrowLeft": leftBtnFunction,
+    "Enter": aBtnFunction,
+    "r": bBtnFunction,
+    "R": bBtnFunction                
+}
 const DEFAULT_SELCTION_IMAGE = "images/rock.png"
 let rounds = 0;
 let currentUserScore = 0;
@@ -54,7 +64,6 @@ drawAudio.volume = 0.15;
 
 
 
-// Add selection styles to the current selected element and remnove the selection style from the previous selection.
 function addSelectionStyle(){
     Object.values(gameOptions).forEach(gameOption => {
         gameOption.classList.remove("selection");
@@ -156,14 +165,7 @@ addDefaultImage();
 rightBtn.addEventListener("click", rightBtnFunction);
 leftBtn.addEventListener("click", leftBtnFunction);
 
-// Key Press Functions
-const keyPressFunctions = {
-    "ArrowRight": rightBtnFunction,
-    "ArrowLeft": leftBtnFunction,
-    "Enter": aBtnFunction,
-    "r": bBtnFunction,
-    "R": bBtnFunction                
-}
+
 document.addEventListener("keydown", function(event) {
     keyPressFunctions[event.key]();
 });
