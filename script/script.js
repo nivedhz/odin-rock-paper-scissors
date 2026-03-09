@@ -34,12 +34,11 @@ const DEFAULT_SELCTION_IMAGE = "images/rock.png"
 let rounds = 0;
 let currentUserScore = 0;
 let currentComputerScore = 0;
-
-// Selecting the 2nd element
 let currentIndex = 1;
+let value = Object.values(gameOptions);
 
 // Add the selection css class to the defaultly selected center item.
-Object.values(gameOptions)[currentIndex].classList.add("selection");
+value[currentIndex].classList.add("selection");
 
 // Menu Switching Audio
 const menuSwitchingAudio = new Audio("audio/menu-switching.mp3");
@@ -65,10 +64,10 @@ drawAudio.volume = 0.15;
 
 
 function addSelectionStyle(){
-    Object.values(gameOptions).forEach(gameOption => {
+    value.forEach(gameOption => {
         gameOption.classList.remove("selection");
     })
-    Object.values(gameOptions)[currentIndex].classList.add("selection");
+    value[currentIndex].classList.add("selection");
 }
 
 function playAudio(audio){
