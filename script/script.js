@@ -74,15 +74,15 @@ function endMessage(){
     innerScreen.replaceChildren();
     let message = document.createElement('div');
     if(currentUserScore === currentComputerScore){
-        playAudio(audios["drawAudio"]);
+        playAudio(audios.drawAudio);
         message.textContent = "It's a Draw!";
     }
     else if(currentUserScore < currentComputerScore){
-        playAudio(audios["loseAudio"]);
+        playAudio(audios.loseAudio);
         message.textContent = "Computer Wins!";
     }
     else{
-        playAudio(audios["winAudio"]);
+        playAudio(audios.winAudio);
         message.textContent = "You Win!";
     }
     message.classList.add("message");
@@ -106,7 +106,7 @@ function playRound(userSelectionKey, computerSelectionKey){
 }
 
 function rightBtnFunction(){
-    playAudio(audios["menuSwitching"]);
+    playAudio(audios.menuSwitching);
     currentIndex++
     if (currentIndex > (Object.keys(gameOptions).length-1)){
         currentIndex = 0;
@@ -115,7 +115,7 @@ function rightBtnFunction(){
 }
 
 function leftBtnFunction(){
-    playAudio(audios["menuSwitching"]);
+    playAudio(audios.menuSwitching);
     currentIndex--;
     if (currentIndex < 0){
         currentIndex = (Object.keys(gameOptions).length-1);
@@ -124,7 +124,7 @@ function leftBtnFunction(){
 }
 
 function aBtnFunction(){
-    playAudio(audios["menuSelection"]);
+    playAudio(audios.menuSelection);
     let computerChoiceRandom = Math.floor(Math.random()*Object.keys(gameOptions).length);
     let userSelectionKey = Object.keys(gameOptions)[currentIndex];
     let computerSelectionKey = Object.keys(gameOptions)[computerChoiceRandom];
@@ -140,7 +140,7 @@ function aBtnFunction(){
 };
 
 function bBtnFunction(){
-    playAudio(audios["menuSelection"]);
+    playAudio(audios.menuSelection);
     innerScreen.replaceChildren(...innerScreenElements);
     rounds = currentUserScore = currentComputerScore = userScore.textContent = computerScore.textContent = 0;
     currentIndex = 1;
