@@ -40,28 +40,19 @@ let value = Object.values(gameOptions);
 // Add the selection css class to the defaultly selected center item.
 value[currentIndex].classList.add("selection");
 
-// Menu Switching Audio
-const menuSwitchingAudio = new Audio("audio/menu-switching.mp3");
-menuSwitchingAudio.preload = "auto";
-menuSwitchingAudio.volume = 0.15;
+// Audios
+let audios = {
+    "menuSwitching" : new Audio("audio/menu-switching.mp3"),
+    "menuSelection" : new Audio("audio/menu-selection.mp3"),
+    "loseAudio" : new Audio("audio/lose-effect.mp3"),
+    "winAudio" : new Audio("audio/win-effect.mp3"),
+    "drawAudio" : new Audio("audio/draw-effect.mp3")
+}
 
-// Button/Menu Selection Audio
-const menuSelectionAudio = new Audio("audio/menu-selection.mp3");
-menuSelectionAudio.preload = "auto";
-menuSelectionAudio.volume = 0.15;
-
-// Result Audios
-const loseAudio = new Audio("audio/lose-effect.mp3");
-loseAudio.preload = "auto";
-loseAudio.volume = 0.15;
-const winAudio = new Audio("audio/win-effect.mp3");
-winAudio.preload = "auto";
-winAudio.volume = 0.15;
-const drawAudio = new Audio("audio/draw-effect.mp3");
-drawAudio.preload = "auto";
-drawAudio.volume = 0.15;
-
-
+for (let [_, value] of Object.entries(audios)){
+    value.preload = "auto";
+    value.volume = 0.15;
+}
 
 function addSelectionStyle(){
     value.forEach(gameOption => {
@@ -83,15 +74,15 @@ function endMessage(){
     innerScreen.replaceChildren();
     let message = document.createElement('div');
     if(currentUserScore === currentComputerScore){
-        playAudio(drawAudio);
+        playAudio(audios["drawAudio"]);
         message.textContent = "It's a Draw!";
     }
     else if(currentUserScore < currentComputerScore){
-        playAudio(loseAudio);
+        playAudio(audios["loseAudio"]);
         message.textContent = "Computer Wins!";
     }
     else{
-        playAudio(winAudio);
+        playAudio(audios["winAudio"]);
         message.textContent = "You Win!";
     }
     message.classList.add("message");
@@ -115,7 +106,7 @@ function playRound(userSelectionKey, computerSelectionKey){
 }
 
 function rightBtnFunction(){
-    playAudio(menuSwitchingAudio);
+    playAudio(audios["menuSwitching"]);
     currentIndex++
     if (currentIndex > (Object.keys(gameOptions).length-1)){
         currentIndex = 0;
@@ -124,7 +115,7 @@ function rightBtnFunction(){
 }
 
 function leftBtnFunction(){
-    playAudio(menuSwitchingAudio);
+    playAudio(audios["menuSwitching"]);
     currentIndex--;
     if (currentIndex < 0){
         currentIndex = (Object.keys(gameOptions).length-1);
@@ -133,7 +124,7 @@ function leftBtnFunction(){
 }
 
 function aBtnFunction(){
-    playAudio(menuSelectionAudio);
+    playAudio(audios["menuSelection"]);
     let computerChoiceRandom = Math.floor(Math.random()*Object.keys(gameOptions).length);
     let userSelectionKey = Object.keys(gameOptions)[currentIndex];
     let computerSelectionKey = Object.keys(gameOptions)[computerChoiceRandom];
@@ -149,7 +140,7 @@ function aBtnFunction(){
 };
 
 function bBtnFunction(){
-    playAudio(menuSelectionAudio);
+    playAudio(audios["menuSelection"]);
     innerScreen.replaceChildren(...innerScreenElements);
     rounds = currentUserScore = currentComputerScore = userScore.textContent = computerScore.textContent = 0;
     currentIndex = 1;
