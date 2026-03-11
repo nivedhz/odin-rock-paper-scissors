@@ -35,10 +35,11 @@ let rounds = 0;
 let currentUserScore = 0;
 let currentComputerScore = 0;
 let currentIndex = 1;
-let value = Object.values(gameOptions);
+let gameOptionValue = Object.values(gameOptions);
+let gameOptionKey = Object.keys(gameOptions);
 
 // Add the selection css class to the defaultly selected center item.
-value[currentIndex].classList.add("selection");
+gameOptionValue[currentIndex].classList.add("selection");
 
 // Audios
 let audios = {
@@ -55,10 +56,10 @@ for (let [_, value] of Object.entries(audios)){
 }
 
 function addSelectionStyle(){
-    value.forEach(gameOption => {
+    gameOptionValue.forEach(gameOption => {
         gameOption.classList.remove("selection");
     })
-    value[currentIndex].classList.add("selection");
+    gameOptionValue[currentIndex].classList.add("selection");
 }
 
 function playAudio(audio){
@@ -108,7 +109,7 @@ function playRound(userSelectionKey, computerSelectionKey){
 function rightBtnFunction(){
     playAudio(audios.menuSwitching);
     currentIndex++
-    if (currentIndex > (Object.keys(gameOptions).length-1)){
+    if (currentIndex > (gameOptionKey.length-1)){
         currentIndex = 0;
     }
     addSelectionStyle();
@@ -118,16 +119,16 @@ function leftBtnFunction(){
     playAudio(audios.menuSwitching);
     currentIndex--;
     if (currentIndex < 0){
-        currentIndex = (Object.keys(gameOptions).length-1);
+        currentIndex = (gameOptionKey.length-1);
     }
     addSelectionStyle();
 }
 
 function aBtnFunction(){
     playAudio(audios.menuSelection);
-    let computerChoiceRandom = Math.floor(Math.random()*Object.keys(gameOptions).length);
-    let userSelectionKey = Object.keys(gameOptions)[currentIndex];
-    let computerSelectionKey = Object.keys(gameOptions)[computerChoiceRandom];
+    let computerChoiceRandom = Math.floor(Math.random()*gameOptionKey.length);
+    let userSelectionKey = gameOptionKey[currentIndex];
+    let computerSelectionKey = gameOptionKey[computerChoiceRandom];
     computerSelection.src = gameOptions[computerSelectionKey].getAttribute("src");
     userSelection.src = gameOptions[userSelectionKey].getAttribute("src");
     rounds++;
