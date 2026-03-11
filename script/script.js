@@ -157,7 +157,9 @@ leftBtn.addEventListener("click", leftBtnFunction);
 
 
 document.addEventListener("keydown", function(event) {
-    keyPressFunctions[event.key]();
+    if (keyPressFunctions[event.key]){
+        keyPressFunctions[event.key]();
+    }
 });
 
 
