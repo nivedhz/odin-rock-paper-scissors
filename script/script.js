@@ -13,7 +13,12 @@ const innerScreen = document.getElementById("innerScreen");
 const innerScreenElements = [...innerScreen.children];
 
 //Default Game Options
-const gameOptions = {"paper": paperOption, "rock": rockOption, "scissors": scissorsOption}
+const gameOptions = ["rock", "paper", "scissors"];
+const gameOptionsDOM = {
+    paper : paperOption,
+    rock : rockOption,
+    scissors : scissorsOption
+}
 const computerBeats = {
     rock: "paper",
     paper: "scissors",
@@ -28,15 +33,15 @@ const keyPressFunctions = {
     "ArrowLeft": leftBtnFunction,
     "Enter": aBtnFunction,
     "r": bBtnFunction,
-    "R": bBtnFunction                
+    "R": bBtnFunction
 }
 const DEFAULT_SELCTION_IMAGE = "images/rock.png"
 let rounds = 0;
 let currentUserScore = 0;
 let currentComputerScore = 0;
 let currentIndex = 1;
-let gameOptionValue = Object.values(gameOptions);
-let gameOptionKey = Object.keys(gameOptions);
+let gameOptionValue = Object.values(gameOptionsDOM);
+let gameOptionKey = Object.keys(gameOptionsDOM);
 
 // Add the selection css class to the defaultly selected center item.
 gameOptionValue[currentIndex].classList.add("selection");
@@ -49,7 +54,6 @@ let audios = {
     "winAudio" : new Audio("audio/win-effect.mp3"),
     "drawAudio" : new Audio("audio/draw-effect.mp3")
 }
-
 for (let [_, value] of Object.entries(audios)){
     value.preload = "auto";
     value.volume = 0.15;
@@ -108,7 +112,7 @@ function playRound(userSelectionKey, computerSelectionKey){
 
 function rightBtnFunction(){
     playAudio(audios.menuSwitching);
-    currentIndex++
+    currentIndex++;
     if (currentIndex > (gameOptionKey.length-1)){
         currentIndex = 0;
     }
@@ -129,14 +133,16 @@ function aBtnFunction(){
     let computerChoiceRandom = Math.floor(Math.random()*gameOptionKey.length);
     let userSelectionKey = gameOptionKey[currentIndex];
     let computerSelectionKey = gameOptionKey[computerChoiceRandom];
-    computerSelection.src = gameOptions[computerSelectionKey].getAttribute("src");
-    userSelection.src = gameOptions[userSelectionKey].getAttribute("src");
+    let computerSelectionClass = gameOptionValue[computerChoiceRandom];
+    let userSelectionClass = gameOptionValue[currentIndex];
+    computerSelection.src = computerSelectionClass.getAttribute("src");
+    userSelection.src = userSelectionClass.getAttribute("src");
     rounds++;
     if (rounds>MAX_ROUNDS){
         endMessage();
     }
     else {
-        playRound(userSelectionKey, computerSelectionKey)
+        playRound(userSelectionKey, computerSelectionKey);
     }
 };
 
