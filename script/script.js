@@ -67,8 +67,8 @@ function addSelectionStyle(){
 }
 
 function playAudio(audio){
-    audio.play();
     audio.currentTime = 0;
+    audio.play();
 }
 
 function addDefaultImage(){
