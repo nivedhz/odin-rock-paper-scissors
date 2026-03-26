@@ -34,7 +34,7 @@ const keyPressFunctions = {
   r: bBtnFunction,
   R: bBtnFunction,
 };
-const DEFAULT_SELCTION_IMAGE = "images/rock.png";
+const DEFAULT_SELECTION_IMAGE = "images/rock.png";
 let rounds = 0;
 let currentUserScore = 0;
 let currentComputerScore = 0;
@@ -71,7 +71,7 @@ function playAudio(audio) {
 }
 
 function addDefaultImage() {
-  computerSelection.src = userSelection.src = DEFAULT_SELCTION_IMAGE;
+  computerSelection.src = userSelection.src = DEFAULT_SELECTION_IMAGE;
 }
 
 function endMessage() {
@@ -148,7 +148,7 @@ function bBtnFunction() {
     currentComputerScore =
     userScore.textContent =
     computerScore.textContent =
-      0;
+    0;
   currentIndex = 1;
   addDefaultImage();
   addSelectionStyle();
